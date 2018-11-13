@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     resources :projects do
       resources :tasks
     end
+
+    resources :tasks do
+      resources :comments
+    end
   end
 
   scope module: :v2, constraints: ApiVersion.new('v2') do
