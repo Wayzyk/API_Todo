@@ -1,5 +1,7 @@
 class AuthenticationController < ApplicationController
   skip_before_action :authorize_request, only: :authenticate
+  before_action :authenticate_user!, only: [:destroy]
+  
   def authenticate
     auth_token =
       AuthenticateUser.new(auth_params[:email], auth_params[:password]).call

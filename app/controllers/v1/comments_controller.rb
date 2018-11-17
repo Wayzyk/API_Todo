@@ -5,7 +5,7 @@ module V1
     before_action :set_task_comment, only: [:show, :update, :destroy]
 
     def index
-      json_response(@task.items)
+      json_response(@task.comments)
     end
 
     def show
@@ -33,7 +33,7 @@ module V1
     end
 
     def set_task_comment
-      @tcomment = @task.comments.find_by!(id: params[:id]) if @comment
+      @comment = @task.comments.find(params[:id]) if @comment
     end
   end
 

@@ -10,12 +10,10 @@ Rails.application.routes.draw do
     end
   end
 
-  scope module: :v2, constraints: ApiVersion.new('v2') do
-    resources :projects, only: :index
-  end
-
 
   post 'auth/sign_in', to: 'authentication#authenticate'
+  
+  post 'auth/sign_out', to: 'authentication#destroy'
 
   post 'auth', to: 'users#create'
 end
