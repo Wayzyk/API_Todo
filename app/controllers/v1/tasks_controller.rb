@@ -30,7 +30,7 @@ module V1
     private
 
     def task_params
-      params.permit(:name, :complete)
+      params.permit(:name, :complete, :deadline)
     end
 
     def set_project
