@@ -15,6 +15,7 @@ module V1
 
    def show
      json_response(@project)
+     @tasks = @project.tasks.order(:sort)
    end
 
    def update
