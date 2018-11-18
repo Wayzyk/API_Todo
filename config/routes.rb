@@ -1,3 +1,23 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  scope module: :v1, constraints: ApiVersion.new('v1', true) do
+    resources :projects do
+      resources :tasks do
+        collection do
+          patch :sort
+        end 
+      end
+    end
+
+    resources :tasks do
+      resources :comments
+    end
+  end
+
+
+  post 'auth/sign_in', to: 'authentication#authenticate'
+  
+  post 'auth/sign_out', to: 'authentication#destroy'
+
+  post 'auth', to: 'users#create'
 end
